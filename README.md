@@ -84,4 +84,6 @@ Similarly Synonyms and Antonyms can also be printed onto the screen.
 
 ###About
 
+The source is in the source.py file. Feel free to check it out.
+
 Created By Pradipta. Copyright 2014
