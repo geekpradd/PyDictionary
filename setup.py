@@ -1,9 +1,9 @@
 from setuptools import setup
-import PyDictionary as module
+
 setup(name='PyDictionary',
-      version=module.__version__,
+      version="1.1.4",
       description='Python Module to get meanings, translations, synonyms and anotnyms of words',
-      author=module.__author__,
+      author="Pradipta Bora",
       author_email='pradd@outlook.com',
       license='MIT',
       packages=['PyDictionary'],
