@@ -82,6 +82,13 @@ print (dictionary.translateTo("hi")) '''This will translate all words to Hindi''
 
 Similarly Synonyms and Antonyms can also be printed onto the screen.
 
+##Apps using PyDictionary
+
+Check this awesome pygame windows game created by RajK853 that improves your vocabulary by using PyDictionary: 
+
+<a href="https://github.com/RajK853/Vocab/">Vocab</a>
+
+Download link: <a href="https://raw.githubusercontent.com/RajK853/Vocab/master/Vocab%20(Exe).zip">Vocab</a>
 ###About
 
 The source is in the source.py file. Feel free to check it out.
