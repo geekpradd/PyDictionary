@@ -1,6 +1,6 @@
 ##PyDictionary: A "Real" Dictionary Module for Python
 
-PyDictionary is a Dictionary Module for Python 2/3 to get meanings, translations, synonyms and Antonyms of words. It uses Google for getting meanings and translations, and thesaurus.com for getting synonyms and antonyms. 
+PyDictionary is a Dictionary Module for Python 2/3 to get meanings, translations, synonyms and Antonyms of words. It uses WordNet for getting meanings, Google for translations, and thesaurus.com for getting synonyms and antonyms. 
 
 This module uses Python Requests, BeautifulSoup4 and goslate as dependencies
 
@@ -37,7 +37,19 @@ This is will create a local instance of the PyDictionary class and now it can be
 print (dictionary.meaning("indentation"))
 ```
 
-This will print out the meaning along with the name of the word and it's type. Incase, you want to get only the meaning (for development purpose) add a parameter `formatted=False` to get only the meaning.
+This will return a dictionary containing the meanings of the word. 
+For example the above code will return:
+
+```
+{'Noun': ['a concave cut into a surface or edge (as in a coastline', 'the
+ formation of small pits in a surface as a consequence of corrosion', 'th
+e space left between the margin and the start of an indented line', 'the 
+act of cutting into an edge with toothlike notches or angular incisions']
+}                                                                        
+```
+The dictionary keys are the different types of the word. If a word is both a verb and a noun then there will be 2 keys:'Noun' and 'Verb'.
+Each key refers to a list containing the meanings
+
 
 For Synonyms,
 
@@ -72,8 +84,8 @@ from PyDictionary import PyDictionary
 dictionary=PyDictionary("hotel","ambush","nonchalant","perceptive")
 'There can be any number of words in the Instance'
 
-print(dictionary.getMeanings()) '''This print the meanings of all the words'''
-
+print(dictionary.printMeanings()) '''This print the meanings of all the words'''
+print(dictionary.getMeanings()) '''This will return meanings as dictionaries'''
 print (dictionary.getSynonyms())
 
 print (dictionary.translateTo("hi")) '''This will translate all words to Hindi'''
