@@ -94,6 +94,39 @@ print (dictionary.translateTo("hi")) '''This will translate all words to Hindi''
 
 Similarly Synonyms and Antonyms can also be printed onto the screen.
 
+##Using the PyDictionary API
+
+I'm very happy to say that the PyDictionary API has been launched.
+
+It's very easy to use and it returns Meanings, Antonyms, Synonyms and Translations in JSON. It runs on Red Hat Open Shift Servers and it uses Flask.
+
+####Usage
+
+For meanings,
+
+```
+http://pydictionary-geekpradd.rhcloud.com/api/meaning/[word]
+```
+
+For Antonyms,
+
+```
+http://pydictionary-geekpradd.rhcloud.com/api/antonym/[word]
+```
+
+For Synonyms,
+
+```
+http://pydictionary-geekpradd.rhcloud.com/api/synonym/[word]
+```
+For Translations,
+
+```
+http://pydictionary-geekpradd.rhcloud.com/api/translate/[code]/[word]
+```
+
+Replace word with the word parameter and 'code' with the Google Translate Language code
+
 ##Apps using PyDictionary
 
 Check this awesome pygame windows game created by RajK853 that improves your vocabulary by using PyDictionary: 
