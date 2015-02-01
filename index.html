@@ -117,6 +117,38 @@ dictionary<span class="pl-k">=</span>PyDictionary(<span class="pl-s1"><span clas
 <p>Similarly Synonyms and Antonyms can also be printed onto the screen.</p>
 
 <h2>
+<a id="using-the-pydictionary-api" class="anchor" href="#using-the-pydictionary-api" aria-hidden="true"><span class="octicon octicon-link"></span></a>Using the PyDictionary API</h2>
+
+<p>I'm very happy to say that the PyDictionary API has been launched.</p>
+
+<p>It's very easy to use and it returns Meanings, Antonyms, Synonyms and Translations in JSON. It runs on Red Hat Open Shift Servers and it uses Flask.</p>
+
+<h4>
+<a id="usage-1" class="anchor" href="#usage-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h4>
+
+<p>For meanings,</p>
+
+<pre><code>http://pydictionary-geekpradd.rhcloud.com/api/meaning/[word]
+</code></pre>
+
+<p>For Antonyms,</p>
+
+<pre><code>http://pydictionary-geekpradd.rhcloud.com/api/antonym/[word]
+</code></pre>
+
+<p>For Synonyms,</p>
+
+<pre><code>http://pydictionary-geekpradd.rhcloud.com/api/synonym/[word]
+</code></pre>
+
+<p>For Translations,</p>
+
+<pre><code>http://pydictionary-geekpradd.rhcloud.com/api/translate/[code]/[word]
+</code></pre>
+
+<p>Replace word with the word parameter and 'code' with the Google Translate Language code</p>
+
+<h2>
 <a id="apps-using-pydictionary" class="anchor" href="#apps-using-pydictionary" aria-hidden="true"><span class="octicon octicon-link"></span></a>Apps using PyDictionary</h2>
 
 <p>Check this awesome pygame windows game created by RajK853 that improves your vocabulary by using PyDictionary: </p>
