@@ -1,4 +1,4 @@
-import requests, sys
+import requests, sys, re
 import goslate
 from bs4 import BeautifulSoup as bs
 __author__="Pradipta Bora"
@@ -12,8 +12,21 @@ class PyDictionary:
       
       def __init__(self, *args):
             self.args=args
-      def getMeanings(self,formatted=True):
-            return [self.meaning(term,formatted) for term  in self.args]
+      def printMeanings(self):
+            dic=self.getMeanings()
+            for key in dic.keys():
+                  print(key+':')
+                  for k in dic[key].keys():
+                        print(k+':')
+                        for m in dic[key][k]:
+                              print(m)
+                        
+                  print('\n')
+      def getMeanings(self):
+            out={}
+            for term in self.args:
+                  out[term]=self.meaning(term)
+            return out
       def translateTo(self,language):
             return [self.translate(term,language) for term in self.args]
       def translate(self,term,language):
@@ -70,7 +83,27 @@ class PyDictionary:
                         return li
                   except:
                         print("{0} has no Antonyms in the API".format(word))
-      def meaning(self,term,formatted=True):
+      def meaning(self,term):
+            if len(term.split())>1:
+                  print ("Error: A Term must be only a single word")
+            else:
+                  try:
+                        link="http://wordnetweb.princeton.edu/perl/webwn?s={0}".format(term)
+                        page=requests.get(link).text
+                        html=bs(page)
+                        types=html.findAll("h3")
+                        length=len(types)
+                        lists=html.findAll("ul")
+                        out={}
+                        for a in types:
+                              reg=  str(lists[types.index(a)])
+                              meanings=[x for x in re.findall(r'\((.*?)\)',reg) if  len(x)>5 or ' ' in str(x)]
+                              name=a.text
+                              out[name]=meanings
+                        return out
+                  except:
+                        print("Error: The Word given is not a valid English Word")
+      def googlemeaning(self,term,formatted=True):
             if len(term.split())>1:
                   print ("Error: A Term must be only a single word")
             else:
@@ -89,8 +122,9 @@ class PyDictionary:
                         print("Error: The Word given is not a valid English Word")
 
 if __name__=='__main__':
-      dictionary=PyDictionary()
-      print (dictionary.meaning("Triumph"))
+      d=PyDictionary('naive','blemish','obnoxious')
+      d.printMeanings()
+      print("Hi there, fellow Geek. Good luck on checking the source out. It's both Python 2 and 3 compatible.\n\nPyDictionary is getting many updates and stay tuned for them. \nA Javascript Plugin and a Web API are coming")
       
      
 

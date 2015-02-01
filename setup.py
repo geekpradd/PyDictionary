@@ -1,8 +1,8 @@
 from setuptools import setup
 
 setup(name='PyDictionary',
-      version="1.1.4",
-      description='Python Module to get meanings, translations, synonyms and anotnyms of words',
+      version="1.3.3",
+      description='Python Module to get meanings, translations, synonyms and antonyms of words',
       author="Pradipta Bora",
       author_email='pradd@outlook.com',
       license='MIT',
