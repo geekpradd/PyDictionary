@@ -5,4 +5,7 @@ python:
    - "3.4"
 install:
    - pip install PyDictionary
+   - pip install coveralls
 script: nosetests -w PyDictionary
+after_success:
+	- coveralls --verbose
