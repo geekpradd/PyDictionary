@@ -6,5 +6,5 @@ python:
    - "3.3"
    - "3.4"
 install:
-   - pip install nose
+   - pip install PyDictionary
 script: nosetests -w PyDictionary
