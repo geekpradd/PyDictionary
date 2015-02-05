@@ -8,4 +8,4 @@ install:
    - pip install coveralls
 script: nosetests -w PyDictionary
 after_success:
-	- coveralls --verbose
+   - coveralls --verbose
