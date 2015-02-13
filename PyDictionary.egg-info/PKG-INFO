@@ -1,6 +1,6 @@
 Metadata-Version: 1.1
 Name: PyDictionary
-Version: 1.3.6
+Version: 1.3.7
 Summary: Python Module to get meanings, translations, synonyms and antonyms of words
 Home-page: http://github.com/geekpradd/PyDictionary
 Author: Pradipta Bora
@@ -8,6 +8,8 @@ Author-email: pradd@outlook.com
 License: MIT
 Description: PyDictionary: A "Real" Dictionary Module for Python
         ---------------------------------------------------
+        
+        |Build Status| |Latest Version| |License|
         
         PyDictionary is a Dictionary Module for Python 2/3 to get meanings,
         translations, synonyms and Antonyms of words. It uses WordNet for
@@ -117,6 +119,45 @@ Description: PyDictionary: A "Real" Dictionary Module for Python
         
         Similarly Synonyms and Antonyms can also be printed onto the screen.
         
+        Using the PyDictionary API
+        --------------------------
+        
+        I'm very happy to say that the PyDictionary API has been launched.
+        
+        It's very easy to use and it returns Meanings, Antonyms, Synonyms and
+        Translations in JSON. It runs on Red Hat Open Shift Servers and it uses
+        Flask.
+        
+        Usage
+        ^^^^^
+        
+        For meanings,
+        
+        ::
+        
+            http://pydictionary-geekpradd.rhcloud.com/api/meaning/[word]
+        
+        For Antonyms,
+        
+        ::
+        
+            http://pydictionary-geekpradd.rhcloud.com/api/antonym/[word]
+        
+        For Synonyms,
+        
+        ::
+        
+            http://pydictionary-geekpradd.rhcloud.com/api/synonym/[word]
+        
+        For Translations,
+        
+        ::
+        
+            http://pydictionary-geekpradd.rhcloud.com/api/translate/[code]/[word]
+        
+        Replace word with the word parameter and 'code' with the Google
+        Translate Language code
+        
         Apps using PyDictionary
         -----------------------
         
@@ -130,6 +171,13 @@ Description: PyDictionary: A "Real" Dictionary Module for Python
         The source is in the source.py file. Feel free to check it out.
         
         Created By Pradipta. Copyright 2014
+        
+        .. |Build Status| image:: https://travis-ci.org/geekpradd/PyDictionary.svg?branch=master
+           :target: https://travis-ci.org/geekpradd/PyDictionary
+        .. |Latest Version| image:: https://pypip.in/version/PyDictionary/badge.svg
+           :target: https://pypi.python.org/pypi/PyDictionary/
+        .. |License| image:: https://pypip.in/license/PyDictionary/badge.svg?style=flat
+           :target: https://pypi.python.org/pypi/PyDictionary/
         
 Platform: UNKNOWN
 Classifier: Development Status :: 5 - Production/Stable
