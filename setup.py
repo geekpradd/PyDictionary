@@ -5,7 +5,7 @@ try:
 except:
     description=''
 setup(name='PyDictionary',
-      version="1.3.6",
+      version="1.3.7",
       description='Python Module to get meanings, translations, synonyms and antonyms of words',
       long_description=description,
       author="Pradipta Bora",

@@ -1,6 +1,8 @@
 ##PyDictionary: A "Real" Dictionary Module for Python
 
 [![Build Status](https://travis-ci.org/geekpradd/PyDictionary.svg?branch=master)](https://travis-ci.org/geekpradd/PyDictionary)
+[![Latest Version](https://pypip.in/version/PyDictionary/badge.svg)](https://pypi.python.org/pypi/PyDictionary/)
+[![License](https://pypip.in/license/PyDictionary/badge.svg?style=flat)](https://pypi.python.org/pypi/PyDictionary/)
 
 PyDictionary is a Dictionary Module for Python 2/3 to get meanings, translations, synonyms and Antonyms of words. It uses WordNet for getting meanings, Google for translations, and thesaurus.com for getting synonyms and antonyms. 
 
