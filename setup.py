@@ -1,11 +1,13 @@
 from setuptools import setup
 try:
     import pypandoc
-    description=pypandoc.convert('README.md','rst')
+    with open('readme-pypi.rst','r') as f:
+      description = f.read()
+    
 except:
     description=''
 setup(name='PyDictionary',
-      version="1.3.7",
+      version="1.3.9",
       description='Python Module to get meanings, translations, synonyms and antonyms of words',
       long_description=description,
       author="Pradipta Bora",
