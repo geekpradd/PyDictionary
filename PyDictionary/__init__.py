@@ -114,9 +114,16 @@ class PyDictionary:
                 out = {}
                 for a in types:
                     reg = str(lists[types.index(a)])
-                    meanings = [
-                        x for x in re.findall(r'\((.*?)\)', reg) if len(x) > 5 or ' ' in str(x)]
+                    meanings = []
+                    for x in re.findall(r'\((.*?)\)', reg):
+                        if 'often followed by' in x:
+                            pass
+                        elif len(x) > 5 or ' ' in str(x):
+                            meanings.append(x)
+                    # meanings = [
+                    #     x for x in re.findall(r'\((.*?)\)', reg) if len(x) > 5 or ' ' in str(x) and not 'often followed by' in x]
                     name = a.text
+                    
                     out[name] = meanings
                 return out
             except:
@@ -145,7 +152,6 @@ class PyDictionary:
                 print("Error: The Word given is not a valid English Word")
 
 if __name__ == '__main__':
-    d = PyDictionary('naive', 'blemish', 'obnoxious')
-    d.printMeanings()
+   
     print(
         "Hi there, fellow Geek. Good luck on checking the source out. It's both Python 2 and 3 compatible.\n\nPyDictionary is getting many updates and stay tuned for them. \nA Javascript Plugin and a Web API are coming")
