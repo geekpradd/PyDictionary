@@ -7,7 +7,7 @@ try:
 except:
     description=''
 setup(name='PyDictionary',
-      version="1.4.0",
+      version="1.5.0",
       description='Python Module to get meanings, translations, synonyms and antonyms of words',
       long_description=description,
       author="Pradipta Bora",
@@ -16,7 +16,10 @@ setup(name='PyDictionary',
       packages=['PyDictionary'],
       url="http://github.com/geekpradd/PyDictionary",
       install_requires=[
-            'beautifulsoup4','goslate','requests',],
+            'beautifulsoup4','goslate','requests','click'],
+      entry_points = {
+    'console_scripts': ['pydictionary = PyDictionary.script:script']
+    },
       classifiers=[
           "Development Status :: 5 - Production/Stable",
           "Topic :: Internet",
