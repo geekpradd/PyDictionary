@@ -11,10 +11,14 @@ if list(sys.version_info)[0] == 2:
 class PyDictionary(object):
 
     def __init__(self, *args):
-        if isinstance(args[0], list):
-            self.args = args[0]
-        else:
+        try:
+            if isinstance(args[0], list):
+                self.args = args[0]
+            else:
+                self.args = args
+        except:
             self.args = args
+
         
     def printMeanings(self):
         dic = self.getMeanings()
