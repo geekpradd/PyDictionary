@@ -21,7 +21,7 @@ pip install PyDictionary
 For Easy_Install
 
 ```
-easy_install -U PyDictionary
+easy_install  PyDictionary
 ```
 
 ###Usage
@@ -98,9 +98,9 @@ print (dictionary.translateTo("hi")) '''This will translate all words to Hindi''
 
 Similarly Synonyms and Antonyms can also be printed onto the screen.
 
-##Using the PyDictionary API
+###Using the PyDictionary API
 
-I'm very happy to say that the PyDictionary API has been launched.
+You can use the PyDictionary API for the above functions as well which just outputs the result of the above functions as JSON.
 
 It's very easy to use and it returns Meanings, Antonyms, Synonyms and Translations in JSON. It runs on Red Hat Open Shift Servers and it uses Flask.
 
@@ -131,13 +131,10 @@ http://pydictionary-geekpradd.rhcloud.com/api/translate/[code]/[word]
 
 Replace word with the word parameter and 'code' with the Google Translate Language code
 
-##PyDictionary for Javascript
+You can view the source here: <a href="https://github.com/geekpradd/PyDictionary-Flask-API">PyDictionary Flask</a>
 
-Here is a client side implmentation for the PyDictionary API in Javascript:
 
-<a href="https://github.com/geekpradd/PyDictionary-Javascript">PyDictionary for Javascript</a>
-
-##Apps using PyDictionary
+###Apps using PyDictionary
 
 Check this awesome pygame windows game created by RajK853 that improves your vocabulary by using PyDictionary: 
 
