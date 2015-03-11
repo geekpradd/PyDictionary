@@ -1,3 +1,0 @@
-[console_scripts]
-pydictionary = PyDictionary.script:script
-
