@@ -3,6 +3,7 @@
 [![Build Status](http://img.shields.io/travis/geekpradd/PyDictionary/master.svg?style=flat-square)](https://travis-ci.org/geekpradd/PyDictionary)
 [![Latest Version](http://img.shields.io/pypi/v/PyDictionary.svg?style=flat-square)](https://pypi.python.org/pypi/PyDictionary/)
 [![License](https://img.shields.io/pypi/l/PyDictionary.svg?style=flat-square)](https://pypi.python.org/pypi/PyDictionary/)
+[![Downloads](https://img.shields.io/pypi/dm/PyDictionary.svg?style=flat-square)](https://pypi.python.org/pypi/PyDictionary/)
 
 PyDictionary is a Dictionary Module for Python 2/3 to get meanings, translations, synonyms and Antonyms of words. It uses WordNet for getting meanings, Google for translations, and thesaurus.com for getting synonyms and antonyms. 
 
@@ -141,6 +142,7 @@ Check this awesome pygame windows game created by RajK853 that improves your voc
 <a href="https://github.com/RajK853/Vocab/">Vocab</a>
 
 Download link: <a href="https://raw.githubusercontent.com/RajK853/Vocab/master/Vocab%20(Exe).zip">Vocab</a>
+
 ###About
 
 The source is in the source.py file. Feel free to check it out.
