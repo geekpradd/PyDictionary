@@ -113,7 +113,7 @@ class PyDictionary(object):
                 print("{0} has no Antonyms in the API".format(word))
 
     @staticmethod
-    def meaning(term):
+    def meaning(term, disable_errors=False):
         if len(term.split()) > 1:
             print("Error: A Term must be only a single word")
         else:
@@ -136,7 +136,8 @@ class PyDictionary(object):
                     out[name] = meanings
                 return out
             except Exception as e:
-                print("Error: The Following Error occured: %s" % e)
+                if disable_errors == False:
+                    print("Error: The Following Error occured: %s" % e)
 
     @staticmethod
     def googlemeaning(term, formatted=True):
