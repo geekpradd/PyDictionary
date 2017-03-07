@@ -1,12 +1,14 @@
 from __future__ import print_function
-import sys, re, goslate
-try:
-    from .utils import _get_soup_object
-except:
-    from utils import _get_soup_object
+import sys
+import re
+import goslate
+
+from .utils import _get_soup_object
+
 python2 = False
 if list(sys.version_info)[0] == 2:
     python2 = True
+
 
 class PyDictionary(object):
 
@@ -16,10 +18,9 @@ class PyDictionary(object):
                 self.args = args[0]
             else:
                 self.args = args
-        except:
+        except IndexError:
             self.args = args
 
-        
     def printMeanings(self):
         dic = self.getMeanings()
         for key in dic.keys():
@@ -28,13 +29,15 @@ class PyDictionary(object):
                 print(k + ':')
                 for m in dic[key][k]:
                     print(m)
+
     def printAntonyms(self):
-        antonyms = dict(zip(self.args,self.getAntonyms(False)))
+        antonyms = dict(zip(self.args, self.getAntonyms(False)))
         for word in antonyms:
             print(word+':')
             print(', '.join(antonyms[word]))
+
     def printSynonyms(self):
-        synonyms = dict(zip(self.args,self.getSynonyms(False)))
+        synonyms = dict(zip(self.args, self.getSynonyms(False)))
         for word in synonyms:
             print(word+':')
             print(', '.join(synonyms[word]))
@@ -51,13 +54,11 @@ class PyDictionary(object):
     def translate(self, term, language):
         if len(term.split()) > 1:
             print("Error: A Term must be only a single word")
-        else:
-            try:
-                gs = goslate.Goslate()
-                word = gs.translate(term, language)
-                return word
-            except:
-                print("Invalid Word")
+
+        # No need to catch errors here. Goslate handles it for us
+        gs = goslate.Goslate()
+        word = gs.translate(term, language)
+        return word
 
     def getSynonyms(self, formatted=True):
         return [self.synonym(term, formatted) for term in self.args]
@@ -68,8 +69,10 @@ class PyDictionary(object):
             print("Error: A Term must be only a single word")
         else:
             try:
-                data = _get_soup_object("http://www.thesaurus.com/browse/{0}".format(term))
+                data = _get_soup_object("http://www.thesaurus.com/browse/{0}"
+                                        .format(term))
                 terms = data.select("div#filters-0")[0].findAll("li")
+
                 if len(terms) > 5:
                     terms = terms[:5:]
                 li = []
@@ -78,7 +81,7 @@ class PyDictionary(object):
                 if formatted:
                     return {term: li}
                 return li
-            except:
+            except IndexError:
                 print("{0} has no Synonyms in the API".format(term))
 
     def __repr__(self):
@@ -99,8 +102,11 @@ class PyDictionary(object):
             print("Error: A Term must be only a single word")
         else:
             try:
-                data = _get_soup_object("http://www.thesaurus.com/browse/{0}".format(word))
+                data = _get_soup_object(
+                    "http://www.thesaurus.com/browse/{0}"
+                    .format(word))
                 terms = data.select("section.antonyms")[0].findAll("li")
+
                 if len(terms) > 5:
                     terms = terms[:5:]
                 li = []
@@ -109,7 +115,7 @@ class PyDictionary(object):
                 if formatted:
                     return {word: li}
                 return li
-            except:
+            except IndexError:
                 print("{0} has no Antonyms in the API".format(word))
 
     @staticmethod
@@ -118,12 +124,15 @@ class PyDictionary(object):
             print("Error: A Term must be only a single word")
         else:
             try:
-                html = _get_soup_object("http://wordnetweb.princeton.edu/perl/webwn?s={0}".format(
-                    term))
+                html = _get_soup_object(
+                        "http://wordnetweb.princeton.edu/perl/webwn?s={0}"
+                        .format(term))
+
                 types = html.findAll("h3")
                 length = len(types)
                 lists = html.findAll("ul")
                 out = {}
+
                 for a in types:
                     reg = str(lists[types.index(a)])
                     meanings = []
@@ -136,7 +145,7 @@ class PyDictionary(object):
                     out[name] = meanings
                 return out
             except Exception as e:
-                if disable_errors == False:
+                if disable_errors is False:
                     print("Error: The Following Error occured: %s" % e)
 
     @staticmethod
@@ -145,23 +154,33 @@ class PyDictionary(object):
             print("Error: A Term must be only a single word")
         else:
             try:
-                html = _get_soup_object("http://www.google.co.in/search?q=define:%3A%20{0}".format(
-                    term))
+                html = _get_soup_object(
+                    "http://www.google.co.in/search?q=define:%3A%20{0}"
+                    .format(term))
+
                 body = html.find(
                     "table", {"style": "font-size:14px;width:100%"})
+
                 wordType = body.find(
                     "div", {"style": "color:#666;padding:5px 0"}).getText()
+
                 meaning = body.find("li").getText()
+
                 formated = "{0} : {1} \n{2}\n".format(
                     term.capitalize(), wordType, meaning)
+
                 if not formatted:
                     return meaning
                 return formated
             except Exception as e:
                 print("Error: The Word given is not a valid English Word")
 
+
 if __name__ == '__main__':
-    d = PyDictionary('honest','happy')
+    d = PyDictionary('honest', 'happy')
     d.printSynonyms()
     print(
-        "Hi there, fellow Geek. Good luck on checking the source out. It's both Python 2 and 3 compatible.\n\nPyDictionary is getting many updates and stay tuned for them. \nA Javascript Plugin and a Web API are coming")
+        "Hi there, fellow Geek. Good luck on checking the source out. \
+        It's both Python 2 and 3 compatible.\
+        \n\nPyDictionary is getting many updates and stay tuned for them.\
+        \nA Javascript Plugin and a Web API are coming")
