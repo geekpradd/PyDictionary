@@ -1,4 +1,4 @@
-##PyDictionary: A "Real" Dictionary Module for Python
+## PyDictionary: A "Real" Dictionary Module for Python
 
 [![Build Status](http://img.shields.io/travis/geekpradd/PyDictionary/master.svg?style=flat-square)](https://travis-ci.org/geekpradd/PyDictionary)
 [![Latest Version](http://img.shields.io/pypi/v/PyDictionary.svg?style=flat-square)](https://pypi.python.org/pypi/PyDictionary/)
@@ -9,7 +9,7 @@ PyDictionary is a Dictionary Module for Python 2/3 to get meanings, translations
 
 This module uses Python Requests, BeautifulSoup4 and goslate as dependencies
 
-###Installation
+### Installation
 
 Installation is very simple through pip (or easy_install)
 
@@ -25,7 +25,7 @@ For Easy_Install
 easy_install  PyDictionary
 ```
 
-###Usage
+### Usage
 
 PyDictionary can be utilised in 2 ways, either by creating a dictionary instance which can take words as arguments or by creating a dictionary instance with a fixed amount of words.
 
@@ -99,13 +99,13 @@ print (dictionary.translateTo("hi")) '''This will translate all words to Hindi''
 
 Similarly Synonyms and Antonyms can also be printed onto the screen.
 
-###Using the PyDictionary API
+### Using the PyDictionary API
 
 You can use the PyDictionary API for the above functions as well which just outputs the result of the above functions as JSON.
 
 It's very easy to use and it returns Meanings, Antonyms, Synonyms and Translations in JSON. It runs on Red Hat Open Shift Servers and it uses Flask.
 
-####Usage
+#### Usage
 
 For meanings,
 
@@ -135,7 +135,7 @@ Replace word with the word parameter and 'code' with the Google Translate Langua
 You can view the source here: <a href="https://github.com/geekpradd/PyDictionary-Flask-API">PyDictionary Flask</a>
 
 
-###Apps using PyDictionary
+### Apps using PyDictionary
 
 Check this awesome pygame windows game created by RajK853 that improves your vocabulary by using PyDictionary: 
 
@@ -143,7 +143,7 @@ Check this awesome pygame windows game created by RajK853 that improves your voc
 
 Download link: <a href="https://raw.githubusercontent.com/RajK853/Vocab/master/Vocab%20(Exe).zip">Vocab</a>
 
-###About
+### About
 
 The source is in the source.py file. Feel free to check it out.
 
