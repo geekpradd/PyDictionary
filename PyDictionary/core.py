@@ -19,7 +19,7 @@ class PyDictionary(object):
         except:
             self.args = args
 
-        
+
     def printMeanings(self):
         dic = self.getMeanings()
         for key in dic.keys():
@@ -68,7 +68,7 @@ class PyDictionary(object):
             print("Error: A Term must be only a single word")
         else:
             try:
-                data = _get_soup_object("http://www.thesaurus.com/browse/{0}".format(term))
+                data = _get_soup_object("http://www.thesaurus.com/browse/{0}".format(term), "html.parser")
                 terms = data.select("div#filters-0")[0].findAll("li")
                 if len(terms) > 5:
                     terms = terms[:5:]
