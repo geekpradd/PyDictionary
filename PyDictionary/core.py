@@ -1,5 +1,5 @@
 from __future__ import print_function
-import sys, re, goslate
+import sys, re, goslate, json
 try:
     from .utils import _get_soup_object
 except:
@@ -19,7 +19,7 @@ class PyDictionary(object):
         except:
             self.args = args
 
-        
+
     def printMeanings(self):
         dic = self.getMeanings()
         for key in dic.keys():
@@ -69,12 +69,13 @@ class PyDictionary(object):
         else:
             try:
                 data = _get_soup_object("http://www.thesaurus.com/browse/{0}".format(term))
-                terms = data.select("div#filters-0")[0].findAll("li")
-                if len(terms) > 5:
-                    terms = terms[:5:]
+                re_synonyms = re.search('"synonyms":(\[.*?\])', data.get_text()).group(1)
+                synonyms = json.JSONDecoder().decode(re_synonyms)
+                if len(synonyms) > 5:
+                    synonyms = synonyms[:5:]
                 li = []
-                for t in terms:
-                    li.append(t.select("span.text")[0].getText())
+                for s in synonyms:
+                    li.append(s["term"])
                 if formatted:
                     return {term: li}
                 return li
