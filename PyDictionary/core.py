@@ -70,7 +70,7 @@ class PyDictionary(object):
             try:
                 data = _get_soup_object("http://www.thesaurus.com/browse/{0}".format(term))
                 re_synonyms = re.search('"synonyms":(\[.*?\])', data.get_text()).group(1)
-                synonyms = json.JSONDecoder().decode(re_synonyms)
+                synonyms = json.loads(re_synonyms)
                 if len(synonyms) > 5:
                     synonyms = synonyms[:5:]
                 li = []
@@ -101,12 +101,13 @@ class PyDictionary(object):
         else:
             try:
                 data = _get_soup_object("http://www.thesaurus.com/browse/{0}".format(word))
-                terms = data.select("section.antonyms")[0].findAll("li")
-                if len(terms) > 5:
-                    terms = terms[:5:]
+                re_antonyms = re.search('"antonyms":(\[.*?\])', data.get_text()).group(1)
+                antonyms = json.loads(re_antonyms)
+                if len(antonyms) > 5:
+                    antonyms = antonyms[:5:]
                 li = []
-                for t in terms:
-                    li.append(t.select("span.text")[0].getText())
+                for a in antonyms:
+                    li.append(a["term"])
                 if formatted:
                     return {word: li}
                 return li
