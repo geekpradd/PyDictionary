@@ -33,7 +33,7 @@ For example,
 
 ```python
 from PyDictionary import PyDictionary
-dictionary=PyDictionary()
+dictionary = PyDictionary()
 ```
 
 This is will create a local instance of the PyDictionary class and now it can be used to get meanings, translations etc.
@@ -86,7 +86,7 @@ Example:
 ```python
 from PyDictionary import PyDictionary
 
-dictionary=PyDictionary("hotel","ambush","nonchalant","perceptive")
+dictionary = PyDictionary("hotel","ambush","nonchalant","perceptive")
 'There can be any number of words in the Instance'
 
 print(dictionary.printMeanings()) '''This print the meanings of all the words'''
@@ -147,4 +147,4 @@ Download link: <a href="https://raw.githubusercontent.com/RajK853/Vocab/master/V
 
 The source is in the source.py file. Feel free to check it out.
 
-Created By Pradipta. Copyright 2014
+Created By Pradipta. Copyright 2019
