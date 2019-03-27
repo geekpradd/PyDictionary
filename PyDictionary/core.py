@@ -99,7 +99,7 @@ class PyDictionary(object):
             print("Error: A Term must be only a single word")
         else:
             try:
-                data = _get_soup_object("http://www.thesaurus.com/browse/{0}".format(word))
+                data = _get_soup_object("http://www.thesaurus.com/browse/{0}".format(term))
                 terms = data.select("section.antonyms")[0].findAll("li")
                 if len(terms) > 5:
                     terms = terms[:5:]
@@ -107,7 +107,7 @@ class PyDictionary(object):
                 for t in terms:
                     li.append(t.select("span.text")[0].getText())
                 if formatted:
-                    return {word: li}
+                    return {term: li}
                 return li
             except:
                 print("{0} has no Antonyms in the API".format(term))
