@@ -94,8 +94,8 @@ class PyDictionary(object):
         return [self.antonym(term, formatted) for term in self.args]
 
     @staticmethod
-    def antonym(word, formatted=False):
-        if len(word.split()) > 1:
+    def antonym(term, formatted=False):
+        if len(term.split()) > 1:
             print("Error: A Term must be only a single word")
         else:
             try:
@@ -110,7 +110,7 @@ class PyDictionary(object):
                     return {word: li}
                 return li
             except:
-                print("{0} has no Antonyms in the API".format(word))
+                print("{0} has no Antonyms in the API".format(term))
 
     @staticmethod
     def meaning(term, disable_errors=False):
