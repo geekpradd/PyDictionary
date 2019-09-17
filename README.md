@@ -135,13 +135,6 @@ Replace word with the word parameter and 'code' with the Google Translate Langua
 You can view the source here: <a href="https://github.com/geekpradd/PyDictionary-Flask-API">PyDictionary Flask</a>
 
 
-### Apps using PyDictionary
-
-Check this awesome pygame windows game created by RajK853 that improves your vocabulary by using PyDictionary: 
-
-<a href="https://github.com/RajK853/Vocab/">Vocab</a>
-
-Download link: <a href="https://raw.githubusercontent.com/RajK853/Vocab/master/Vocab%20(Exe).zip">Vocab</a>
 
 ### About
 
