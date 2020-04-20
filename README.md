@@ -9,6 +9,8 @@ PyDictionary is a Dictionary Module for Python 2/3 to get meanings, translations
 
 This module uses Python Requests, BeautifulSoup4 and goslate as dependencies
 
+UPDATE: I will be reworking this plugin to ensure that this works as of May 2020. Please stay tuned! The work of various PRs and some modifications from my side will be pushed to the PyPi repository as well. Thanks!
+
 ### Installation
 
 Installation is very simple through pip (or easy_install)
