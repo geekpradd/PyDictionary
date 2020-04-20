@@ -68,16 +68,13 @@ class PyDictionary(object):
             print("Error: A Term must be only a single word")
         else:
             try:
-                data = _get_soup_object("http://www.thesaurus.com/browse/{0}".format(term))
-                terms = data.select("div#filters-0")[0].findAll("li")
-                if len(terms) > 5:
-                    terms = terms[:5:]
-                li = []
-                for t in terms:
-                    li.append(t.select("span.text")[0].getText())
+                data = _get_soup_object("https://www.thesaurus.com/browse/{0}".format(term))
+                section = data.find('section', {'class': 'synonyms-container'})
+                spans = section.findAll('span')
+                synonyms = [span.text for span in spans[:5]]
                 if formatted:
-                    return {term: li}
-                return li
+                    return {term: synonyms}
+                return synonyms
             except:
                 print("{0} has no Synonyms in the API".format(term))
 
@@ -99,16 +96,13 @@ class PyDictionary(object):
             print("Error: A Term must be only a single word")
         else:
             try:
-                data = _get_soup_object("http://www.thesaurus.com/browse/{0}".format(word))
-                terms = data.select("section.antonyms")[0].findAll("li")
-                if len(terms) > 5:
-                    terms = terms[:5:]
-                li = []
-                for t in terms:
-                    li.append(t.select("span.text")[0].getText())
+                data = _get_soup_object("https://www.thesaurus.com/browse/{0}".format(word))
+                section = data.find('section', {'class': 'antonyms-container'})
+                spans = section.findAll('span')
+                antonyms = [span.text for span in spans[:5]]
                 if formatted:
-                    return {word: li}
-                return li
+                    return {word: antonyms}
+                return antonyms
             except:
                 print("{0} has no Antonyms in the API".format(word))
 
