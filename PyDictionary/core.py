@@ -69,7 +69,7 @@ class PyDictionary(object):
         else:
             try:
                 data = _get_soup_object("https://www.thesaurus.com/browse/{0}".format(term))
-                synom=soup.find(lambda elm: elm.name == "h2" and "Synonyms for " in elm.text)
+                synom=data.find(lambda elm: elm.name == "h2" and "Synonyms for " in elm.text)
                 synom=synom.next_sibling
                 spans = synom.findAll('li')
                 synonyms = [span.text for span in spans[:5]]
@@ -98,7 +98,7 @@ class PyDictionary(object):
         else:
             try:
                 data = _get_soup_object("https://www.thesaurus.com/browse/{0}".format(word))
-                anto=soup.find(lambda elm: elm.name == "h2" and "Antonyms for " in elm.text)
+                anto=data.find(lambda elm: elm.name == "h2" and "Antonyms for " in elm.text)
                 anto=anto.next_sibling
                 spans = anto.findAll('li')
                 antonyms = [span.text for span in spans[:5]]
