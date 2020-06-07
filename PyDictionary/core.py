@@ -97,8 +97,8 @@ class PyDictionary(object):
         else:
             try:
                 data = _get_soup_object("https://www.thesaurus.com/browse/{0}".format(word))
-                section = data.find('section', {'class': 'antonyms-container'})
-                spans = section.findAll('span')
+                anto = data.find('ul',{'class':'css-17d6qyx-WordGridLayoutBox et6tpn80'})
+                spans = anto.findAll('li')
                 antonyms = [span.text for span in spans[:5]]
                 if formatted:
                     return {word: antonyms}
