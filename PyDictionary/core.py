@@ -69,8 +69,8 @@ class PyDictionary(object):
         else:
             try:
                 data = _get_soup_object("https://www.thesaurus.com/browse/{0}".format(term))
-                section = data.find('section', {'class': 'synonyms-container'})
-                spans = section.findAll('span')
+                synom = data.find('ul',{'class':'css-17d6qyx-WordGridLayoutBox et6tpn80'})
+                spans = synom.findAll('li')
                 synonyms = [span.text for span in spans[:5]]
                 if formatted:
                     return {term: synonyms}
