@@ -3,6 +3,7 @@ try:
 	from .__init__ import PyDictionary #Python 3
 except:
 	from __init__ import PyDictionary
+
 dictionary=PyDictionary()
 
 class PyDictionaryTest(unittest.TestCase):

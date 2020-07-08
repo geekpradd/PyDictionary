@@ -4,6 +4,7 @@ try:
     from .utils import _get_soup_object
 except:
     from utils import _get_soup_object
+
 python2 = False
 if list(sys.version_info)[0] == 2:
     python2 = True
@@ -19,7 +20,7 @@ class PyDictionary(object):
         except:
             self.args = args
 
-        
+    
     def printMeanings(self):
         dic = self.getMeanings()
         for key in dic.keys():
@@ -28,11 +29,13 @@ class PyDictionary(object):
                 print(k + ':')
                 for m in dic[key][k]:
                     print(m)
+
     def printAntonyms(self):
         antonyms = dict(zip(self.args,self.getAntonyms(False)))
         for word in antonyms:
             print(word+':')
             print(', '.join(antonyms[word]))
+
     def printSynonyms(self):
         synonyms = dict(zip(self.args,self.getSynonyms(False)))
         for word in synonyms:
@@ -62,22 +65,6 @@ class PyDictionary(object):
     def getSynonyms(self, formatted=True):
         return [self.synonym(term, formatted) for term in self.args]
 
-    @staticmethod
-    def synonym(term, formatted=False):
-        if len(term.split()) > 1:
-            print("Error: A Term must be only a single word")
-        else:
-            try:
-                data = _get_soup_object("https://www.thesaurus.com/browse/{0}".format(term))
-                section = data.find('section', {'class': 'synonyms-container'})
-                spans = section.findAll('span')
-                synonyms = [span.text for span in spans[:5]]
-                if formatted:
-                    return {term: synonyms}
-                return synonyms
-            except:
-                print("{0} has no Synonyms in the API".format(term))
-
     def __repr__(self):
         return "<PyDictionary Object with {0} words>".format(len(self.args))
 
@@ -91,15 +78,32 @@ class PyDictionary(object):
         return [self.antonym(term, formatted) for term in self.args]
 
     @staticmethod
-    def antonym(word, formatted=False):
-        if len(word.split()) > 1:
+    def synonym(term, formatted=False):
+        if len(term.split()) > 1:
             print("Error: A Term must be only a single word")
         else:
             try:
-                data = _get_soup_object("https://www.thesaurus.com/browse/{0}".format(word))
-                section = data.find('section', {'class': 'antonyms-container'})
-                spans = section.findAll('span')
-                antonyms = [span.text for span in spans[:5]]
+                data = _get_soup_object("https://www.synonym.com/synonyms/{0}".format(term))
+                section = data.find('div', {'class': 'type-synonym'})
+                spans = section.findAll('a')
+                synonyms = [span.text.strip() for span in spans]
+                if formatted:
+                    return {term: synonyms}
+                return synonyms
+            except:
+                print("{0} has no Synonyms in the API".format(term))
+
+
+    @staticmethod
+    def antonym(term, formatted=False):
+        if len(term.split()) > 1:
+            print("Error: A Term must be only a single word")
+        else:
+            try:
+                data = _get_soup_object("https://www.synonym.com/synonyms/{0}".format(term))
+                section = data.find('div', {'class': 'type-antonym'})
+                spans = section.findAll('a')
+                antonyms = [span.text.strip() for span in spans]
                 if formatted:
                     return {word: antonyms}
                 return antonyms
@@ -133,29 +137,7 @@ class PyDictionary(object):
                 if disable_errors == False:
                     print("Error: The Following Error occured: %s" % e)
 
-    @staticmethod
-    def googlemeaning(term, formatted=True):
-        if len(term.split()) > 1:
-            print("Error: A Term must be only a single word")
-        else:
-            try:
-                html = _get_soup_object("http://www.google.co.in/search?q=define:%3A%20{0}".format(
-                    term))
-                body = html.find(
-                    "table", {"style": "font-size:14px;width:100%"})
-                wordType = body.find(
-                    "div", {"style": "color:#666;padding:5px 0"}).getText()
-                meaning = body.find("li").getText()
-                formated = "{0} : {1} \n{2}\n".format(
-                    term.capitalize(), wordType, meaning)
-                if not formatted:
-                    return meaning
-                return formated
-            except Exception as e:
-                print("Error: The Word given is not a valid English Word")
-
 if __name__ == '__main__':
     d = PyDictionary('honest','happy')
     d.printSynonyms()
-    print(
-        "Hi there, fellow Geek. Good luck on checking the source out. It's both Python 2 and 3 compatible.\n\nPyDictionary is getting many updates and stay tuned for them. \nA Javascript Plugin and a Web API are coming")
+
