@@ -105,10 +105,10 @@ class PyDictionary(object):
                 spans = section.findAll('a')
                 antonyms = [span.text.strip() for span in spans]
                 if formatted:
-                    return {word: antonyms}
+                    return {term: antonyms}
                 return antonyms
             except:
-                print("{0} has no Antonyms in the API".format(word))
+                print("{0} has no Antonyms in the API".format(term))
 
     @staticmethod
     def meaning(term, disable_errors=False):

@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="PyDictionary", # Replace with your own username
-    version="2.0.0",
+    version="2.0.1",
     author="geekpradd",
     author_email="pradd@outlook.com",
     description="A real dictionary module for Python",
@@ -17,7 +17,6 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    python_requires='>=2.6',
     install_requires=[
         'bs4',
         'click',

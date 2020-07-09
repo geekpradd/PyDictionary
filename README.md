@@ -101,4 +101,5 @@ Similarly Synonyms and Antonyms can also be printed onto the screen.
 
 ### About
 
+Current Version: 2.0.1
 Created By Pradipta Bora 2020.
