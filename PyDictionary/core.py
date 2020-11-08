@@ -122,8 +122,8 @@ class PyDictionary(object):
                 length = len(types)
                 lists = html.findAll("ul")
                 out = {}
-                for a in types:
-                    reg = str(lists[types.index(a)])
+                for a, reg in zip(types, lists):
+                    reg = str(reg)
                     meanings = []
                     for x in re.findall(r'\((.*?)\)', reg):
                         if 'often followed by' in x:
