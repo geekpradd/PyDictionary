@@ -135,7 +135,6 @@ class PyDictionary(object):
                 return out
             except Exception as e:
                 if disable_errors == False:
-                    print("Error: The Following Error occured: %s" % e)
                     raise e
 
 if __name__ == '__main__':
