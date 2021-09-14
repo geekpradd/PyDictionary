@@ -54,6 +54,7 @@ class PyDictionary(object):
     def translate(self, term, language):
         if len(term.split()) > 1:
             print("Error: A Term must be only a single word")
+            raise OneWordOnly
         else:
             try:
                 gs = goslate.Goslate()
@@ -80,7 +81,7 @@ class PyDictionary(object):
     @staticmethod
     def synonym(term, formatted=False):
         if len(term.split()) > 1:
-            print("Error: A Term must be only a single word")
+            raise OneWordOnly
         else:
             try:
                 data = _get_soup_object("https://www.synonym.com/synonyms/{0}".format(term))
@@ -91,7 +92,7 @@ class PyDictionary(object):
                     return {term: synonyms}
                 return synonyms
             except:
-                print("{0} has no Synonyms in the API".format(term))
+                raise NoSynonyms
 
 
     @staticmethod
