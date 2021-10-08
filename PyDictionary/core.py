@@ -30,6 +30,17 @@ class PyDictionary(object):
                 for m in dic[key][k]:
                     print(m)
 
+    def formatMeanings(self):
+        definition = ""
+        temp = self.getMeanings()
+        for key in temp.keys():
+            definition += f"{key.capitalize()}:\n"
+            for k in temp[key].keys():
+                definition += f"{k.capitalize()}:\n"
+                for m in temp[key][k]:
+                    definition += f"{m.capitalize()}.\n"
+        return definition
+
     def printAntonyms(self):
         antonyms = dict(zip(self.args,self.getAntonyms(False)))
         for word in antonyms:
