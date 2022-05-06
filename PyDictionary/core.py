@@ -11,7 +11,8 @@ if list(sys.version_info)[0] == 2:
 
 class PyDictionary(object):
 
-    def __init__(self, *args):
+    def __init__(self, proxies=None, *args):
+        self.proxies = proxies
         try:
             if isinstance(args[0], list):
                 self.args = args[0]
@@ -78,12 +79,12 @@ class PyDictionary(object):
         return [self.antonym(term, formatted) for term in self.args]
 
     @staticmethod
-    def synonym(term, formatted=False):
+    def synonym(term, formatted=False, proxies=self.proxies):
         if len(term.split()) > 1:
             print("Error: A Term must be only a single word")
         else:
             try:
-                data = _get_soup_object("https://www.synonym.com/synonyms/{0}".format(term))
+                data = _get_soup_object("https://www.synonym.com/synonyms/{0}".format(term), proxies)
                 section = data.find('div', {'class': 'type-synonym'})
                 spans = section.findAll('a')
                 synonyms = [span.text.strip() for span in spans]
@@ -95,12 +96,12 @@ class PyDictionary(object):
 
 
     @staticmethod
-    def antonym(term, formatted=False):
+    def antonym(term, formatted=False, proxies=self.proxies):
         if len(term.split()) > 1:
             print("Error: A Term must be only a single word")
         else:
             try:
-                data = _get_soup_object("https://www.synonym.com/synonyms/{0}".format(term))
+                data = _get_soup_object("https://www.synonym.com/synonyms/{0}".format(term), proxies)
                 section = data.find('div', {'class': 'type-antonym'})
                 spans = section.findAll('a')
                 antonyms = [span.text.strip() for span in spans]
@@ -111,13 +112,13 @@ class PyDictionary(object):
                 print("{0} has no Antonyms in the API".format(term))
 
     @staticmethod
-    def meaning(term, disable_errors=False):
+    def meaning(term, disable_errors=False, proxies=self.proxies):
         if len(term.split()) > 1:
             print("Error: A Term must be only a single word")
         else:
             try:
                 html = _get_soup_object("http://wordnetweb.princeton.edu/perl/webwn?s={0}".format(
-                    term))
+                    term), proxies)
                 types = html.findAll("h3")
                 length = len(types)
                 lists = html.findAll("ul")
