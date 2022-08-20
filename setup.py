@@ -4,8 +4,8 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="PyDictionary", # Replace with your own username
-    version="2.0.1",
+    name="PyDictionary",  # Replace with your own username
+    version="2.0.2",
     author="geekpradd",
     author_email="pradd@outlook.com",
     description="A real dictionary module for Python",
@@ -20,7 +20,6 @@ setuptools.setup(
     install_requires=[
         'bs4',
         'click',
-        'goslate',
         'requests'
     ]
 )

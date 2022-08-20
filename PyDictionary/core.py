@@ -1,5 +1,6 @@
 from __future__ import print_function
-import sys, re, goslate
+import sys
+import re
 try:
     from .utils import _get_soup_object
 except:
@@ -8,6 +9,7 @@ except:
 python2 = False
 if list(sys.version_info)[0] == 2:
     python2 = True
+
 
 class PyDictionary(object):
 
@@ -20,7 +22,6 @@ class PyDictionary(object):
         except:
             self.args = args
 
-    
     def printMeanings(self):
         dic = self.getMeanings()
         for key in dic.keys():
@@ -31,13 +32,13 @@ class PyDictionary(object):
                     print(m)
 
     def printAntonyms(self):
-        antonyms = dict(zip(self.args,self.getAntonyms(False)))
+        antonyms = dict(zip(self.args, self.getAntonyms(False)))
         for word in antonyms:
             print(word+':')
             print(', '.join(antonyms[word]))
 
     def printSynonyms(self):
-        synonyms = dict(zip(self.args,self.getSynonyms(False)))
+        synonyms = dict(zip(self.args, self.getSynonyms(False)))
         for word in synonyms:
             print(word+':')
             print(', '.join(synonyms[word]))
@@ -47,20 +48,6 @@ class PyDictionary(object):
         for term in self.args:
             out[term] = self.meaning(term)
         return out
-
-    def translateTo(self, language):
-        return [self.translate(term, language) for term in self.args]
-
-    def translate(self, term, language):
-        if len(term.split()) > 1:
-            print("Error: A Term must be only a single word")
-        else:
-            try:
-                gs = goslate.Goslate()
-                word = gs.translate(term, language)
-                return word
-            except:
-                print("Invalid Word")
 
     def getSynonyms(self, formatted=True):
         return [self.synonym(term, formatted) for term in self.args]
@@ -83,7 +70,8 @@ class PyDictionary(object):
             print("Error: A Term must be only a single word")
         else:
             try:
-                data = _get_soup_object("https://www.synonym.com/synonyms/{0}".format(term))
+                data = _get_soup_object(
+                    "https://www.synonym.com/synonyms/{0}".format(term))
                 section = data.find('div', {'class': 'type-synonym'})
                 spans = section.findAll('a')
                 synonyms = [span.text.strip() for span in spans]
@@ -93,14 +81,14 @@ class PyDictionary(object):
             except:
                 print("{0} has no Synonyms in the API".format(term))
 
-
     @staticmethod
     def antonym(term, formatted=False):
         if len(term.split()) > 1:
             print("Error: A Term must be only a single word")
         else:
             try:
-                data = _get_soup_object("https://www.synonym.com/synonyms/{0}".format(term))
+                data = _get_soup_object(
+                    "https://www.synonym.com/synonyms/{0}".format(term))
                 section = data.find('div', {'class': 'type-antonym'})
                 spans = section.findAll('a')
                 antonyms = [span.text.strip() for span in spans]
@@ -137,7 +125,7 @@ class PyDictionary(object):
                 if disable_errors == False:
                     print("Error: The Following Error occured: %s" % e)
 
-if __name__ == '__main__':
-    d = PyDictionary('honest','happy')
-    d.printSynonyms()
 
+if __name__ == '__main__':
+    d = PyDictionary('honest', 'happy')
+    d.printSynonyms()
