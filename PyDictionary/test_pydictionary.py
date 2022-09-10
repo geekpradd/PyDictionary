@@ -3,6 +3,7 @@ try:
 	from .__init__ import PyDictionary #Python 3
 except:
 	from __init__ import PyDictionary
+from exceptions import WordNotFound
 
 dictionary=PyDictionary()
 
@@ -10,6 +11,8 @@ class PyDictionaryTest(unittest.TestCase):
 	def testMeaning(self):
 		self.assertIsInstance(dictionary.meaning('python'),dict)
 		self.assertIsInstance(dictionary.meaning("neural network"), dict)
+		self.assertRaises(WordNotFound, dictionary.meaning, "blies", disable_errors=False)
+
 	def testSynonym(self):
 		self.assertIsInstance(dictionary.synonym('happy'),list)
 	def testAntonym(self):

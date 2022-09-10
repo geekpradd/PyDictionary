@@ -4,6 +4,7 @@ try:
     from .utils import _get_soup_object
 except:
     from utils import _get_soup_object
+from exceptions import WordNotFound
 
 python2 = False
 if list(sys.version_info)[0] == 2:
@@ -133,9 +134,11 @@ class PyDictionary(object):
                 name = a.text
                 out[name] = meanings
             return out
-        except Exception as e:
+        except IndexError as e:
             if disable_errors == False:
                 print("Error: The Following Error occured: %s" % e)
+
+            raise WordNotFound("Failed to fetch meaning from API")
 
 if __name__ == '__main__':
     d = PyDictionary('honest','happy')
