@@ -113,29 +113,29 @@ class PyDictionary(object):
     @staticmethod
     def meaning(term, disable_errors=False):
         if len(term.split()) > 1:
-            print("Error: A Term must be only a single word")
-        else:
-            try:
-                html = _get_soup_object("http://wordnetweb.princeton.edu/perl/webwn?s={0}".format(
-                    term))
-                types = html.findAll("h3")
-                length = len(types)
-                lists = html.findAll("ul")
-                out = {}
-                for a in types:
-                    reg = str(lists[types.index(a)])
-                    meanings = []
-                    for x in re.findall(r'\((.*?)\)', reg):
-                        if 'often followed by' in x:
-                            pass
-                        elif len(x) > 5 or ' ' in str(x):
-                            meanings.append(x)
-                    name = a.text
-                    out[name] = meanings
-                return out
-            except Exception as e:
-                if disable_errors == False:
-                    print("Error: The Following Error occured: %s" % e)
+            term="+".join(term.split())
+
+        try:
+            html = _get_soup_object("http://wordnetweb.princeton.edu/perl/webwn?s={0}".format(
+                term))
+            types = html.findAll("h3")
+            length = len(types)
+            lists = html.findAll("ul")
+            out = {}
+            for a in types:
+                reg = str(lists[types.index(a)])
+                meanings = []
+                for x in re.findall(r'\((.*?)\)', reg):
+                    if 'often followed by' in x:
+                        pass
+                    elif len(x) > 5 or ' ' in str(x):
+                        meanings.append(x)
+                name = a.text
+                out[name] = meanings
+            return out
+        except Exception as e:
+            if disable_errors == False:
+                print("Error: The Following Error occured: %s" % e)
 
 if __name__ == '__main__':
     d = PyDictionary('honest','happy')

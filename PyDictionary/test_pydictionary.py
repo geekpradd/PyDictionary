@@ -9,6 +9,7 @@ dictionary=PyDictionary()
 class PyDictionaryTest(unittest.TestCase):
 	def testMeaning(self):
 		self.assertIsInstance(dictionary.meaning('python'),dict)
+		self.assertIsInstance(dictionary.meaning("neural network"), dict)
 	def testSynonym(self):
 		self.assertIsInstance(dictionary.synonym('happy'),list)
 	def testAntonym(self):
