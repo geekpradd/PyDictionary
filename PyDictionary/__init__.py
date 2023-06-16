@@ -1,8 +1,7 @@
 __author__ = "Pradipta Bora"
-__version__ = "1.5.1"
+__version__ = "2.0.2"
 
 try:
     from .core import *
-except:
+except ImportError:
     from core import *
-
