@@ -5,6 +5,9 @@
 [![License](https://img.shields.io/pypi/l/PyDictionary.svg?style=flat-square)](https://pypi.python.org/pypi/PyDictionary/)
 [![Downloads](https://img.shields.io/pypi/dm/PyDictionary.svg?style=flat-square)](https://pypi.python.org/pypi/PyDictionary/)
 
+NOTE: Mainintaing this module requires constantly changing the scrapping endpoints which unfortunately I no longer have the bandwidth to do so, so this module is DEPRECATED. Kindly use other substitutes available on PyPI. Thanks!
+
+
 PyDictionary is a Dictionary Module for Python 2/3 to get meanings, translations, synonyms and Antonyms of words. It uses WordNet for getting meanings, Google for translations, and synonym.com for getting synonyms and antonyms. 
 
 This module uses Python Requests, BeautifulSoup4 and goslate as dependencies
