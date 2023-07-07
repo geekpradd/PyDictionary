@@ -122,6 +122,10 @@ class PyDictionary(object):
                 length = len(types)
                 lists = html.findAll("ul")
                 out = {}
+
+                if 'Your search did not return any results.' in types[0]:
+                    return out
+
                 for a in types:
                     reg = str(lists[types.index(a)])
                     meanings = []
