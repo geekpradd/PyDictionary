@@ -54,13 +54,14 @@ class PyDictionary(object):
     def translate(self, term, language):
         if len(term.split()) > 1:
             print("Error: A Term must be only a single word")
+            raise OneWordOnly
         else:
             try:
                 gs = goslate.Goslate()
                 word = gs.translate(term, language)
                 return word
             except:
-                print("Invalid Word")
+                raise InvalidWord
 
     def getSynonyms(self, formatted=True):
         return [self.synonym(term, formatted) for term in self.args]
@@ -80,7 +81,7 @@ class PyDictionary(object):
     @staticmethod
     def synonym(term, formatted=False):
         if len(term.split()) > 1:
-            print("Error: A Term must be only a single word")
+            raise OneWordOnly
         else:
             try:
                 data = _get_soup_object("https://www.synonym.com/synonyms/{0}".format(term))
@@ -91,13 +92,13 @@ class PyDictionary(object):
                     return {term: synonyms}
                 return synonyms
             except:
-                print("{0} has no Synonyms in the API".format(term))
+                raise NoSynonyms
 
 
     @staticmethod
     def antonym(term, formatted=False):
         if len(term.split()) > 1:
-            print("Error: A Term must be only a single word")
+            raise TooManyWords
         else:
             try:
                 data = _get_soup_object("https://www.synonym.com/synonyms/{0}".format(term))
@@ -108,12 +109,12 @@ class PyDictionary(object):
                     return {term: antonyms}
                 return antonyms
             except:
-                print("{0} has no Antonyms in the API".format(term))
+                raise NoResults
 
     @staticmethod
     def meaning(term, disable_errors=False):
         if len(term.split()) > 1:
-            print("Error: A Term must be only a single word")
+            raise TooManyWords
         else:
             try:
                 html = _get_soup_object("http://wordnetweb.princeton.edu/perl/webwn?s={0}".format(
@@ -135,7 +136,7 @@ class PyDictionary(object):
                 return out
             except Exception as e:
                 if disable_errors == False:
-                    print("Error: The Following Error occured: %s" % e)
+                    raise e
 
 if __name__ == '__main__':
     d = PyDictionary('honest','happy')
